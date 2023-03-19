@@ -1,11 +1,8 @@
 ﻿using Domain.Common;
+using Domain.Directions;
 using Domain.Recipes;
+using Persistence.Directions;
 using Persistence.Recipes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Common
 {
@@ -16,7 +13,7 @@ namespace Persistence.Common
         {
             _context = context;
             Recipes = new RecipeRepository(_context);
-            Directions = new IDirectionRepository(_context);
+            Directions = new DirectionRepository(_context);
         }
         public IRecipeRepository Recipes { get; private set; }
         public IDirectionRepository Directions { get; private set; }

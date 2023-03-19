@@ -1,4 +1,5 @@
-﻿using Domain.Recipes;
+﻿using Domain.Directions;
+using Domain.Recipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Domain.Common
     public interface IUnitOfWork : IDisposable
     {
         IRecipeRepository Recipes { get; }
+        IDirectionRepository Directions { get; }
         int Complete();
     }
 }
