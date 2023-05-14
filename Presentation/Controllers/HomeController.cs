@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using Presentation.Helpers;
+using Application.Recipes;
 
 namespace Presentation.Controllers
 {
@@ -7,26 +8,19 @@ namespace Presentation.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        //private readonly IGetRecipeName _query;
-
-        //public HomeController(IGetRecipeName query)
-        //{
-        //    _query = query;
-        //}
-
-        //[HttpGet]
-        //[Route("[action]")]
-        //public string GettingRecipeName()
-        //{
-        //    var recipeName = _query.GetRecipename();
-        //    return JsonConvert.SerializeObject(recipeName);
-        //}
-
         [HttpGet]
-        public string GettingRecipeName()
+        //[Route("[action]")]
+        public IEnumerable<RecipeDTO> Get()
         {
-            var recipeName = _query.GetRecipename();
-            return JsonConvert.SerializeObject(recipeName);
+            var recipes = RecipesHelper.GetAllRecipes(); 
+            return recipes;
+        }
+
+        [HttpPost]
+        //[Route("/CreateRecipe")]
+        public void CreateRecipe(CreateRecipeModel model)
+        {
+            RecipesHelper.CreateRecipe(model);
         }
     }
 }

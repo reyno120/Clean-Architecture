@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace Application.Recipes
 {
-    public class RecipeDTO
+    public class CreateRecipeModel
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Direction> Directions { get; set; }
-}
+        public List<Directions> Directions { get; set; }
+    }
+    public class Directions
+    {
+        public short StepNumber { get; set; }
+        public string Direction { get; set; }
+    }
 }

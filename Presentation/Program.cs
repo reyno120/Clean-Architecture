@@ -1,11 +1,12 @@
 using Domain.Common;
 using Domain.Recipes;
 using Domain.Directions;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 using Persistence;
 using Persistence.Common;
 using Persistence.Recipes;
 using Persistence.Directions;
+using Application.Recipes;
 //using Persistence.Directions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,17 +15,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<ApplicationContext>(options =>
-options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    //,b => b.MigrationAssembly(typeof(ApplicationContext).Assembly.FullName)
-    )
-);
-builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
-builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
-builder.Services.AddTransient<IDirectionRepository, DirectionRepository>();
-//builder.Services.AddTransient<IGetRecipeName, GetRecipeName>();
+//builder.Services.AddDbContext<ApplicationContext>(options =>
+//options.UseSqlServer(
+//    builder.Configuration.GetConnectionString("DefaultConnection")
+//    //,b => b.MigrationAssembly(typeof(ApplicationContext).Assembly.FullName)
+//    )
+//);
+//builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+//builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+//builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
+//builder.Services.AddTransient<IDirectionRepository, DirectionRepository>();
+//builder.Services.AddTransient<IRecipesLogic, RecipesLogic>();
 //Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
 
 

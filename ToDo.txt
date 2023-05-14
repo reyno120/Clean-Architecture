@@ -1,0 +1,2 @@
+1. Error handling for WebAPI
+2. Changing Doamin models (Ex. In directions, RecipeId -> Recipe object)

@@ -19,10 +19,12 @@ namespace Application.Recipes
             {
                 var recipeDirections = directions
                     .Where(w => w.RecipeId == recipe.Id)
+                    .OrderBy(s => s.StepNumber)
                     .ToList();
 
                 var recipeDTO = new RecipeDTO()
                 {
+                    Id = recipe.Id,
                     Name = recipe.Name,
                     Description = recipe.Description,
                     Directions = recipeDirections
@@ -31,6 +33,13 @@ namespace Application.Recipes
                 recipesDTO.Add(recipeDTO);
             }
             return recipesDTO;
+        }
+
+        public Guid Create(CreateRecipeModel createRecipeModel)
+        {
+            //var newRecipe = _unitOfWork.Recipes.Add(createRecipeModel);
+            //return newRecipe.Id;
+            return Guid.Empty;
         }
     }
 }
