@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Users
 {
-    public class User : IEntity
-    {
-        public Guid Id { get; set; }
+    //public class User : IEntity
+    //{
+    //    public Guid Id { get; set; }
 
-        public string Username { get; set; }
-    }
+    //    public string Username { get; set; }
+    //}
 }

@@ -25,7 +25,7 @@ namespace Service.Controllers
         }
 
         [HttpPost]
-        [Route("/CreateRecipe/{recipe}")]
+        [Route("/CreateRecipe")]
         public void CreateRecipe(CreateRecipeModel createRecipe)
         {
             _recipesLogic.Create(createRecipe);

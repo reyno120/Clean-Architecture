@@ -2,12 +2,20 @@
 
 namespace Domain.Recipes
 {
-    public class Recipe : IEntity
+    public class Recipe : IAggregateRoot<RecipeId>
     {
-        public Guid Id { get; set; }
+        public RecipeId Id { get; private set; }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
+
+        public List<Direction> Directions { get; private set; }
+
+        public void AddStep(RecipeId recipeId, short stepNumber, string description)
+        {
+            var step = Direction.Create(recipeId, stepNumber, description);
+            Directions.Add(step);
+        }
     }
 }

@@ -8,7 +8,7 @@ export default function RecipeCard(props) {
     const toggle = () => setModal(!modal);
 
     const directions = props.recipe.directions.map(direction =>
-        <CardText key={direction.id}>
+        <CardText key={direction.id.value}>
             {direction.stepNumber}. {direction.description}
         </CardText>) 
 

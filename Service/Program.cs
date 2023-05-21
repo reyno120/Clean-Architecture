@@ -1,9 +1,7 @@
 using Domain.Common;
-using Domain.Directions;
 using Domain.Recipes;
 using Persistence;
 using Persistence.Common;
-using Persistence.Directions;
 using Persistence.Recipes;
 using Microsoft.EntityFrameworkCore;
 using Application.Recipes;
@@ -25,7 +23,6 @@ options.UseSqlServer(
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
-builder.Services.AddTransient<IDirectionRepository, DirectionRepository>();
 builder.Services.AddTransient<IRecipesLogic, RecipesLogic>();
 
 var app = builder.Build();

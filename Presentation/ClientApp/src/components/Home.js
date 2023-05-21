@@ -15,7 +15,7 @@ export default function Home() {
 
     if (!isLoading) {
         recipes = data.map(recipe =>
-            <Col key={recipe.id} style={{marginBottom: '10%'}}>
+            <Col key={recipe.id.value} style={{marginBottom: '10%'}}>
                 <RecipeCard
                     key={recipe.id}
                     recipe={recipe}

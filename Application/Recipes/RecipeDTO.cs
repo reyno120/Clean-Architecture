@@ -1,17 +1,15 @@
-﻿using Domain.Directions;
+﻿//using Domain.Directions;
+using Domain.Recipes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Recipes
 {
     public class RecipeDTO
     {
-        public Guid Id { get; set; }
+        public RecipeId Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Direction> Directions { get; set; }
-}
+        public List<DirectionDTO> Directions { get; set; }
+    }
 }

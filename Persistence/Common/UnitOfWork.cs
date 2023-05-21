@@ -1,7 +1,5 @@
 ﻿using Domain.Common;
-using Domain.Directions;
 using Domain.Recipes;
-using Persistence.Directions;
 using Persistence.Recipes;
 
 namespace Persistence.Common
@@ -13,10 +11,8 @@ namespace Persistence.Common
         {
             _context = context;
             Recipes = new RecipeRepository(_context);
-            Directions = new DirectionRepository(_context);
         }
         public IRecipeRepository Recipes { get; private set; }
-        public IDirectionRepository Directions { get; private set; }
         public int Complete()
         {
             return _context.SaveChanges();

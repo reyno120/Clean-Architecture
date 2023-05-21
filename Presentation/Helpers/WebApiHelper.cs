@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Presentation.Helpers
 {
@@ -41,7 +42,7 @@ namespace Presentation.Helpers
             using (HttpClient client = new HttpClient())
             {
                 client.ConfigureApiClient();
-                StringContent httpContent = new StringContent(JsonConvert.SerializeObject(postObject));
+                StringContent httpContent = new StringContent(JsonConvert.SerializeObject(postObject), Encoding.UTF8, "application/json");
                 var response = client.PostAsync(route, httpContent).Result;
 
                 if (response.IsSuccessStatusCode)

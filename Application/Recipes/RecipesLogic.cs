@@ -11,27 +11,21 @@ namespace Application.Recipes
         }
         public List<RecipeDTO> GetAll()
         {
-            var recipes = _unitOfWork.Recipes.GetAll().ToList();
-            var directions = _unitOfWork.Directions.GetAll().ToList();
+            var recipes = _unitOfWork.Recipes.GetAllRecipesWithDirections().ToList();
 
-            var recipesDTO = new List<RecipeDTO>();
-            foreach(var recipe in recipes)
+            var recipesDTO = recipes.Select(s => new RecipeDTO()
             {
-                var recipeDirections = directions
-                    .Where(w => w.RecipeId == recipe.Id)
-                    .OrderBy(s => s.StepNumber)
-                    .ToList();
-
-                var recipeDTO = new RecipeDTO()
+                Id = s.Id,
+                Name = s.Name,
+                Description = s.Description,
+                Directions = s.Directions.Select(x => new DirectionDTO()
                 {
-                    Id = recipe.Id,
-                    Name = recipe.Name,
-                    Description = recipe.Description,
-                    Directions = recipeDirections
-                };
+                    Id = x.Id,
+                    StepNumber = x.StepNumber,
+                    Description = x.Description
+                }).ToList()
+            }).ToList();
 
-                recipesDTO.Add(recipeDTO);
-            }
             return recipesDTO;
         }
 
