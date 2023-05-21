@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Recipes;
 
 namespace Application.Recipes
 {
@@ -29,11 +30,16 @@ namespace Application.Recipes
             return recipesDTO;
         }
 
-        public Guid Create(CreateRecipeModel createRecipeModel)
+        public void Create(CreateRecipeModel createRecipeModel)
         {
-            //var newRecipe = _unitOfWork.Recipes.Add(createRecipeModel);
-            //return newRecipe.Id;
-            return Guid.Empty;
+            var newRecipe = Recipe.Create(createRecipeModel.Name, createRecipeModel.Description);
+
+            foreach(var direction in createRecipeModel.Directions)
+            {
+                newRecipe.AddStep(newRecipe.Id, direction.StepNumber, direction.Direction);
+            }
+
+            var newRecipeId = _unitOfWork.Recipes.CreateNewRecipe(newRecipe);
         }
     }
 }

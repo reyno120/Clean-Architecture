@@ -14,7 +14,7 @@ export function Create() {
 
     const mutation = useMutation({
         mutationFn: (newRecipe) => {
-            return axios.post('/home', newRecipe)
+            return axios.post('/create', newRecipe)
         },
     })
 
@@ -104,7 +104,7 @@ export function Create() {
     return (
         <div>
 
-                        {mutation.isLaoding ? ('Creating Recipe') : null}
+                        {mutation.isLoading ? ('Creating Recipe') : null}
                         {mutation.isError ? ('Error') : null }
                         {mutation.isSuccess ? ('Success') : null }
 

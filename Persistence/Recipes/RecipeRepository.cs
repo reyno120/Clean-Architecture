@@ -16,5 +16,18 @@ namespace Persistence.Recipes
             return _context.Recipes.Include(s => s.Directions).ToList();
         }
 
+        public RecipeId CreateNewRecipe(Recipe recipe)
+        {
+            try
+            {
+                _context.Recipes.Add(recipe);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
