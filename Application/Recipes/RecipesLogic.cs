@@ -19,6 +19,7 @@ namespace Application.Recipes
                 Id = s.Id,
                 Name = s.Name,
                 Description = s.Description,
+                ImagePublicId = s.ImagePublicId,
                 Directions = s.Directions.Select(x => new DirectionDTO()
                 {
                     Id = x.Id,
@@ -39,7 +40,7 @@ namespace Application.Recipes
                 newRecipe.AddStep(newRecipe.Id, direction.StepNumber, direction.Direction);
             }
 
-            var newRecipeId = _unitOfWork.Recipes.CreateNewRecipe(newRecipe);
+            _unitOfWork.Recipes.CreateNewRecipe(newRecipe);
         }
     }
 }

@@ -1,6 +1,7 @@
 import { useQuery} from 'react-query';
 import RecipeCard from './RecipeCard';
 import { Container, Col, Row } from 'reactstrap';
+import { Cloudinary } from "@cloudinary/url-gen";
 
 const retrieveRecipes = async () => {
     const response = await fetch('home');
@@ -8,6 +9,12 @@ const retrieveRecipes = async () => {
 }
 
 export default function Home() {
+    const cld = new Cloudinary({
+        cloud: {
+            cloudName: 'drsnwqblv'
+        }
+    });
+
     const { isLoading, data, error } = useQuery("recipes", retrieveRecipes);
     var recipes = [];
 
@@ -19,6 +26,7 @@ export default function Home() {
                 <RecipeCard
                     key={recipe.id}
                     recipe={recipe}
+                    cld={cld}
 
                 />
             </Col>

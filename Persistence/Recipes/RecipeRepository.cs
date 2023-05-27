@@ -16,7 +16,7 @@ namespace Persistence.Recipes
             return _context.Recipes.Include(s => s.Directions).ToList();
         }
 
-        public RecipeId CreateNewRecipe(Recipe recipe)
+        public void CreateNewRecipe(Recipe recipe)
         {
             try
             {

@@ -10,6 +10,8 @@ namespace Domain.Recipes
 
         public string Description { get; private set; }
 
+        public Guid? ImagePublicId { get; private set; }
+
         public List<Direction> Directions { get; private set; }
 
         public static Recipe Create(string name, string description)

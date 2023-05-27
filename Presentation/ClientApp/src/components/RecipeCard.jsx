@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react'
 import { Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { AdvancedImage, lazyload, placeholder, responsive } from '@cloudinary/react';
 
 export default function RecipeCard(props) {
     const [modal, setModal] = useState(false);
@@ -15,12 +16,13 @@ export default function RecipeCard(props) {
     return (
         <Card
             style={{
-                width: '18rem'
+                width: '18rem',
+                margin: 'auto'
             }}
         >
-            <img
-                alt="Sample"
-                src="https://picsum.photos/300/200"
+            <AdvancedImage
+                cldImg={props.recipe.imagePublicId ? props.cld.image('recipes/' + props.recipe.imagePublicId + '.jpg') : props.cld.image('sample')}
+                plugins={[lazyload(), responsive(100), placeholder()]}
             />
             <CardBody>
                 <CardTitle tag="h5">
