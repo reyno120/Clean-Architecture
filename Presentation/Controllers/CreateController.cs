@@ -1,6 +1,6 @@
-﻿using Application.Recipes;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Presentation.Helpers;
+using Presentation.Models;
 
 namespace Presentation.Controllers
 {
@@ -9,7 +9,7 @@ namespace Presentation.Controllers
     public class CreateController : Controller
     {
         [HttpPost]
-        public void Create(CreateRecipeModel model)
+        public void Create([FromForm]CreateRecipeModel model)
         {
             RecipesHelper.CreateRecipe(model);
         }

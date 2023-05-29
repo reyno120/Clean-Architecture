@@ -1,5 +1,4 @@
 ﻿using Application.Recipes;
-using Domain.Recipes;
 using Newtonsoft.Json;
 
 namespace Presentation.Helpers
@@ -15,10 +14,26 @@ namespace Presentation.Helpers
             return recipes;
         }
 
-        public static void CreateRecipe(CreateRecipeModel model)
+        public static void CreateRecipe(Models.CreateRecipeModel model)
         {
+            var newDirectionsModel = model.Directions.Select(s => new Directions
+            {
+                StepNumber = s.StepNumber,
+                Direction = s.Direction
+            }).ToList();
+
+            
+
+            var newRecipeModel = new CreateRecipeModel()
+            {
+                Name = model.Name,
+                Description = model.Description,
+                Directions = newDirectionsModel,
+                Image = model.Image != null ? model.Image.GetByteArray() : null
+        };
+
             string route = "/CreateRecipe";
-            WebApiHelper.PostApi(route, model);
+            WebApiHelper.PostApi(route, newRecipeModel);
         }
     }
 }

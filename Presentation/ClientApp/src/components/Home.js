@@ -18,9 +18,9 @@ export default function Home() {
     const { isLoading, data, error } = useQuery("recipes", retrieveRecipes);
     var recipes = [];
 
-    if (error) recipes = error;
+    //if (error) recipes = error;
 
-    if (!isLoading) {
+    //if (!isLoading) {
         recipes = data.map(recipe =>
             <Col key={recipe.id.value} style={{marginBottom: '10%'}}>
                 <RecipeCard
@@ -31,7 +31,7 @@ export default function Home() {
                 />
             </Col>
         )
-    }
+    //}
 
     return (
         <div>

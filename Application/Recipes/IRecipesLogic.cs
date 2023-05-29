@@ -1,7 +1,4 @@
-﻿
-using Domain.Recipes;
-
-namespace Application.Recipes
+﻿namespace Application.Recipes
 {
     public interface IRecipesLogic
     {

@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react'
 import { Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { AdvancedImage, lazyload, placeholder, responsive } from '@cloudinary/react';
+import { AdvancedImage, lazyload } from '@cloudinary/react';
 
 export default function RecipeCard(props) {
     const [modal, setModal] = useState(false);
@@ -13,6 +13,10 @@ export default function RecipeCard(props) {
             {direction.stepNumber}. {direction.description}
         </CardText>) 
 
+    var image = props.recipe.imagePublicId ?
+        props.cld.image('recipes/' + props.recipe.imagePublicId + '.jpg') :
+        props.cld.image('sample');
+
     return (
         <Card
             style={{
@@ -21,8 +25,8 @@ export default function RecipeCard(props) {
             }}
         >
             <AdvancedImage
-                cldImg={props.recipe.imagePublicId ? props.cld.image('recipes/' + props.recipe.imagePublicId + '.jpg') : props.cld.image('sample')}
-                plugins={[lazyload(), responsive(100), placeholder()]}
+                cldImg={image}
+                plugins={[lazyload()]}
             />
             <CardBody>
                 <CardTitle tag="h5">
@@ -31,12 +35,12 @@ export default function RecipeCard(props) {
                 <CardText>
                     { props.recipe.description }
                 </CardText>
-                <Button onClick={toggle} color="primary">
+                <Button onClick={toggle} color="primary" outline>
                     Directions
                 </Button>
             </CardBody>
-            <Modal isOpen={modal} toggle={toggle} {...props}>
-                <ModalHeader toggle={toggle}>
+            <Modal isOpen={modal} toggle={toggle}>
+                <ModalHeader>
                     Directions for <strong>{props.recipe.name}</strong>
                 </ModalHeader>
                 <ModalBody>

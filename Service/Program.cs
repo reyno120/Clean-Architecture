@@ -5,6 +5,8 @@ using Persistence.Common;
 using Persistence.Recipes;
 using Microsoft.EntityFrameworkCore;
 using Application.Recipes;
+using Application.Common;
+using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,7 @@ builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
 builder.Services.AddTransient<IRecipesLogic, RecipesLogic>();
+builder.Services.AddTransient<ICloudinaryHelper, CloudinaryHelper>();
 
 var app = builder.Build();
 

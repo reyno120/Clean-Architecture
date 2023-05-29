@@ -11,11 +11,16 @@ export function Create() {
     const [directions, setDirections] = useState([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [image, setImage] = useState(null);
 
     const mutation = useMutation({
         mutationFn: (newRecipe) => {
-            return axios.post('/create', newRecipe)
-        },
+            return axios.post('/create', newRecipe, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+        }
     })
 
     function onSubmit(e) {
@@ -24,12 +29,13 @@ export function Create() {
         var newRecipe = {
             name: name,
             description: description,
+            image: image,
             directions: directions.map((direction, i) => {
                 return { stepNumber: i + 1, direction: direction.direction };
             })
         }
 
-        mutation.mutate(newRecipe)
+        mutation.mutate(newRecipe);
     }
 
     function addDirection() {
@@ -47,6 +53,10 @@ export function Create() {
             return direction;
         });
         setDirections(nextDirections);
+    }
+
+    function addImage(e) {
+        setImage(e.target.files[0]);
     }
 
     const addDirectionComponent = () => {
@@ -143,6 +153,32 @@ export function Create() {
                         />
                     </Col>
                 </FormGroup>
+                <FormGroup>
+                    <Label
+                        for="Image"
+                        sm={2}
+                    >
+                        Upload Image
+                    </Label>
+                    <Col sm={6}>
+                        <Input
+                            id="Image"
+                            name="Image"
+                            type="file"
+                            onChange={(e) => addImage(e)}
+                        />
+                    </Col>
+                </FormGroup>
+
+                <FormGroup>
+                    {image != null ?
+                        <img
+                            src={URL.createObjectURL(image)}
+                            style={{ width: '300px', height: '200px' }} />
+                        : ''}
+                </FormGroup>
+
+                
                 <Label
                     sm={2}
                 >

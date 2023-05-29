@@ -14,14 +14,15 @@ namespace Domain.Recipes
 
         public List<Direction> Directions { get; private set; }
 
-        public static Recipe Create(string name, string description)
+        public static Recipe Create(string name, string description, Guid? imagePublicId)
         {
             var recipe = new Recipe()
             {
                 Id = new RecipeId(Guid.NewGuid()),
                 Name = name,
                 Description = description,
-                Directions = new List<Direction>()
+                Directions = new List<Direction>(),
+                ImagePublicId = imagePublicId
             };
 
             return recipe;
