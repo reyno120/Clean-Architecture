@@ -180,9 +180,6 @@ export function Create() {
 
     return (
         <div>
-
-            {/*{mutation.isLoading ? <Spinner /> : null}*/}
-
             <Form style={{overflowY: 'auto', overflowX: 'hidden'}}>
                 <FormGroup>
                     <Label
