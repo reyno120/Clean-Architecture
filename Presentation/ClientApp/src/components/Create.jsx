@@ -1,17 +1,25 @@
 ﻿import React, { useState } from 'react'
-import { Form, FormGroup, Label, Input } from 'reactstrap'
+import { Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap'
 import { Col, Row } from 'reactstrap'
 import { Navbar } from 'reactstrap';
-import { Button } from 'reactstrap'
+import { Spinner } from 'reactstrap'
 import { PlusCircleFill, DashCircleFill, CheckSquareFill } from 'react-bootstrap-icons'
 import { useMutation } from 'react-query'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 export function Create() {
     const [directions, setDirections] = useState([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
+    const [showAlert, setShowAlert] = useState(false);
+    const [valid, setValid] = useState({
+        name: true,
+        description: true
+    })
+    const MySwal = withReactContent(Swal)
 
     const mutation = useMutation({
         mutationFn: (newRecipe) => {
@@ -19,12 +27,42 @@ export function Create() {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
+            }).then(function () {
+                MySwal.fire({
+                    title: <strong>Success!</strong>,
+                    confirmButtonColor: '#3B71CA',
+                    icon: 'success'
+                }).then(function () {
+                    window.location.replace('/');
+                })
+            }).catch(function (error) {
+                MySwal.fire({
+                    title: <strong>{error}</strong>,
+                    confirmButtonColor: '#3B71CA',
+                    icon: 'error'
+                })
             });
         }
     })
 
+    const spinnerClass = {
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100vh',
+        zIndex: '2000',
+        backgroundColor: 'rgb(0, 0, 0, 0.5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+
     function onSubmit(e) {
         e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
 
         var newRecipe = {
             name: name,
@@ -36,6 +74,35 @@ export function Create() {
         }
 
         mutation.mutate(newRecipe);
+    }
+
+    function validateForm() {
+        if (name == '') {
+            setValid({ name: false, description: true });
+            return false;
+        }
+
+        if (description == '') {
+            setValid({ name: true, description: false })
+            return false;
+        }
+
+        if (directions.length == 0) {
+            setShowAlert(true);
+            return false;
+        }
+
+        for (var i = 0; i < directions.length; i++) {
+            if (directions[i].direction == '') {
+                setShowAlert(true);
+                return false;
+            } 
+        }
+
+        setValid({ name: true, description: true });
+        setShowAlert(false);
+
+        return true;
     }
 
     function addDirection() {
@@ -114,9 +181,7 @@ export function Create() {
     return (
         <div>
 
-                        {mutation.isLoading ? ('Creating Recipe') : null}
-                        {mutation.isError ? ('Error') : null }
-                        {mutation.isSuccess ? ('Success') : null }
+            {/*{mutation.isLoading ? <Spinner /> : null}*/}
 
             <Form style={{overflowY: 'auto', overflowX: 'hidden'}}>
                 <FormGroup>
@@ -132,8 +197,10 @@ export function Create() {
                             name="Name"
                             placeholder='Grilled Portobella "Steaks"'
                             type="text"
-                            onChange={(e) => {setName(e.target.value)}}
+                            onChange={(e) => { setName(e.target.value) }}
+                            invalid={!valid.name}
                         />
+                        <FormFeedback>Recipe name is required</FormFeedback>
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -149,7 +216,8 @@ export function Create() {
                             name="Description"
                             placeholder='Portobella mushrooms grilled to perfection'
                             type="text"
-                            onChange={(e) => {setDescription(e.target.value)}}
+                            onChange={(e) => { setDescription(e.target.value) }}
+                            invalid={!valid.description}
                         />
                     </Col>
                 </FormGroup>
@@ -184,12 +252,18 @@ export function Create() {
                 >
                     Directions
                 </Label>
+                <Alert isOpen={showAlert} color="danger">Must have at least one direction and directions cannot be blank!</Alert>
                 <FormGroup style={{paddingBottom: '100px'}}>
 
                     {listOfDirections()}
                     {directions.length < 15 ? addDirectionComponent() : ''}
 
                 </FormGroup>
+
+                <div style={mutation.isLoading ? spinnerClass : { display: 'none' }}>
+                    <Spinner
+                        style={{ position: 'relative', top: '-30%' }} />
+                </div>
             </Form>
 
             <Navbar fixed='bottom' color='light' expand='md' container>
