@@ -219,6 +219,7 @@ export function Create() {
                             onChange={(e) => { setDescription(e.target.value) }}
                             invalid={!valid.description}
                         />
+                        <FormFeedback>Recipe description is required</FormFeedback>
                     </Col>
                 </FormGroup>
                 <FormGroup>
