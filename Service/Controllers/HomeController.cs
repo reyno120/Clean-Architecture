@@ -23,12 +23,5 @@ namespace Service.Controllers
             var recipes = _recipesLogic.GetAll();
             return JsonConvert.SerializeObject(recipes);
         }
-
-        [HttpPost]
-        [Route("/CreateRecipe")]
-        public void CreateRecipe(CreateRecipeModel createRecipe)
-        {
-            _recipesLogic.Create(createRecipe);
-        }
     }
 }

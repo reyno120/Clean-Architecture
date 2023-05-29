@@ -27,6 +27,7 @@ export default function RecipeCard(props) {
             <AdvancedImage
                 cldImg={image}
                 plugins={[lazyload()]}
+                style={{width: '100%', height: '200px'}}
             />
             <CardBody>
                 <CardTitle tag="h5">
