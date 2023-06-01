@@ -1,16 +1,16 @@
-## Understanding Clean Architecture
+# Understanding Clean Architecture
 * 4 Layer vs traditional 3 layer
 * Functional Cohesion rather than categorical
-### Domain Layer
+## Domain Layer
 * DDD & Aggregates
 * Strongly Typed Id's
-### Application Layer
-### Service Layer
-### Persistence Layer
-### Infrastructure Layer
-### Presentation Layer
+## Application Layer
+## Service Layer
+## Persistence Layer
+## Infrastructure Layer
+## Presentation Layer
 
-## Demo
+# Demo
 Video demo
 
-## Build Instructions
+# Build Instructions
