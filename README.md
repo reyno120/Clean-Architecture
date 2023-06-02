@@ -42,7 +42,8 @@ This approach requires more time and effort up front to implement, especially if
 * DDD & Aggregates
 * Strongly Typed Id's
 
-The Domain layer sits at the center of our application. This is where me model our business entities using Domain-Driven Design. An entity is an object in your business domain that has an identity. An aggregate is a collection of entities
+The Domain layer sits at the center of our application. This is where me model our business entities using Domain-Driven Design. An entity is an object in your business domain that has an identity. An aggregate is a collection of entities held together by the aggregate root. In our recipe app example, the Recipes aggregate consists of a Recipe and a Direction class. The Recipe class is our aggregate root and has a reference to the Direction class. Anytime we want to access the Direction entity we need to do so through the aggregate root - our Recipe class.
+* Insert diagram of aggregate
 ### Application Layer
 ### Service Layer
 ### Persistence Layer
