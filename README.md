@@ -24,11 +24,11 @@ Clean Architecture also creates separation of concerns by organizing our applica
 
 The key thing to remember with Clean architecture is that your dependencies must point inward. Your application layer is dependent on your domain layer. However, your domain layer lies at the center of your architecture and does not "know" about the other layers of your application.
 ## Why Clean Architecture?
-Works for small projects, but as project grows and gets more complex, start adding more features, traditional approach fails
-
 A key concept of Clean Architecture is loose coupling between the components of your applicaiton by using abstraction. We can achieve this by using interfaces. Rather than your classes depending upon other classes and their implementation, we can depend on an interface that has it's implementation defined at runtime using dependency injection.
 
-I mentioned earlier that the traditional 3 layer approach works well with smaller, less complex applications. As your application grows in size and complexity it can become harder to maintain. By separating out the concerns of your application and depending on abstractions rather than implementations, our code becomes more organized and flexible as the business requirements rapidly change.
+I mentioned earlier that the traditional 3 layer approach works well with smaller, less complex applications. As your application grows in size and complexity it can become harder to maintain. By separating out the concerns of your application and depending on abstractions rather than implementations, our code becomes more organized and flexible as the business requirements rapidly change
+
+One of the biggest selling points to Clean Architecture is improved testability. By placing our business entities at the center of our application we can focus on testing the business rules without worrying about the details. Since our code is dependent on abstractions, we can replace those details with mock versions during testing.
 ## How to implement Clean Architecture
 * Functional Cohesion rather than categorical
 ### Domain Layer
