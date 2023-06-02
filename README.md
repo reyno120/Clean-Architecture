@@ -29,6 +29,11 @@ A key concept of Clean Architecture is loose coupling between the components of 
 I mentioned earlier that the traditional 3 layer approach works well with smaller, less complex applications. As your application grows in size and complexity it can become harder to maintain. By separating out the concerns of your application and depending on abstractions rather than implementations, our code becomes more organized and flexible as the business requirements rapidly change
 
 One of the biggest selling points to Clean Architecture is improved testability. By placing our business entities at the center of our application we can focus on testing the business rules without worrying about the details. Since our code is dependent on abstractions, we can replace those details with mock versions during testing.
+<br />
+<br />
+
+### What are the disadvantages to Clean Architecture?
+This approach requires more time and effort up front to implement, especially if there are developers on your team who don't have experience implementing Clean Architecture principles. Getting buy in from management and business owners can be difficult depending on your team's deadlines. Clean Architecture requires you to think about your application's growth in the long term.
 ## How to implement Clean Architecture
 * Functional Cohesion rather than categorical
 ### Domain Layer
