@@ -18,6 +18,11 @@ This 3 layer approach was the standard for some time and is how many application
 As a result, development teams have been shifting to what's called "Clean Architecture", created by Robert C. Martin (a.k.a. "Uncle Bob"). The rest of this document covers the What, Why, and How of Clean Architecture, using a basic Recipe App for creating and viewing recipes as an example. It's important to remember that there is nothing inherently "bad" or "wrong" with the traditional 3 layer approach. In fact a traditional 3 layer approach may be better for smaller, less complex applications as it doesn't need the added benefits that Clean Architecture provides. When designing and building software, we should move away from labeling patterns and practices from either "good" or "bad" and instead ask, "What is best for my specific business problem that I am trying to solve"?
 
 ## What is Clean Architecture?
+With the traditional 3 layer architecture your database gets placed at the center, forcing your application to become highly dependent on your database implementation. Clean Architecture instead focuses on your business entities and forces your application to depend on those entities in what's typically called the "Domain" layer.
+
+Clean Architecture also creates separation of concerns by organizing our application into layers. By separating our business logic and domain entities from our database implementation and presentation code we create a much more maintainable and testable system. We can swap out databases without requiring a whole rewrite of our application.
+
+The key thing to remember with Clean architecture is that your dependencies must point inward. Your application layer is dependent on your domain layer, however, your domain layer lies at the center of your architecture and does not "know" about any of the other layers in your application.
 ## Why Clean Architecture?
 Works for small projects, but as project grows and gets more complex, start adding more features, traditional approach fails
 ## How to implement Clean Architecture
