@@ -1,7 +1,5 @@
 # Understanding Clean Architecture
-<p align="center">
-  <img width="300px" height="300px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/8a39e2c1-9367-435b-8fc4-69829eaf297f)">
-</p>
+* Place project image here
 
 ## Traditional 3 Layer Approach
 <p align="center">
@@ -18,6 +16,10 @@ This 3 layer approach was the standard for some time and is how many application
 As a result, development teams have been shifting to what's called "Clean Architecture", created by Robert C. Martin (a.k.a. "Uncle Bob"). The rest of this document covers the What, Why, and How of Clean Architecture, using a basic Recipe App for creating and viewing recipes as an example. It's important to remember that there is nothing inherently "bad" or "wrong" with the traditional 3 layer approach. In fact a traditional 3 layer approach may be better for smaller, less complex applications as it doesn't need the added benefits that Clean Architecture provides. When designing and building software, we should move away from labeling patterns and practices from either "good" or "bad" and instead ask, "What is best for my specific business problem that I am trying to solve"?
 
 ## What is Clean Architecture?
+<p align="center">
+  <img width="300px" height="300px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/8a39e2c1-9367-435b-8fc4-69829eaf297f)">
+</p>
+
 With the traditional 3 layer architecture your database gets placed at the center, forcing your application to become highly dependent on your database implementation. Clean Architecture instead focuses on your business entities and forces your application to depend on those entities in what's typically called the "Domain" layer.
 
 Clean Architecture also creates separation of concerns by organizing our application into layers. By separating our business logic and domain entities from our database implementation and presentation code we create a much more maintainable and testable system. We can swap out databases without requiring a whole rewrite of our application.
@@ -39,6 +41,8 @@ This approach requires more time and effort up front to implement, especially if
 ### Domain Layer
 * DDD & Aggregates
 * Strongly Typed Id's
+
+The Domain layer sits at the center of our application. This is where me model our business entities using Domain-Driven Design. An entity is an object in your business domain that has an identity. An aggregate is a collection of entities
 ### Application Layer
 ### Service Layer
 ### Persistence Layer
