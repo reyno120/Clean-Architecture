@@ -33,6 +33,7 @@ Works for small projects, but as project grows and gets more complex, start addi
 ### Application Layer
 ### Service Layer
 ### Persistence Layer
+* Abstracting away database, creating a black box, defining implementation on runtime through use of dependency injection
 ### Infrastructure Layer
 ### Presentation Layer
 
