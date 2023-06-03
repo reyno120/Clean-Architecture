@@ -3,7 +3,7 @@
  </h1>
  <br />
 <p align="center">
-  <img width="600px" height="400px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/4c4a00c9-b027-4f77-b00b-abb59504eb41">
+  <img width="600px" height="400px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/92b79815-1ce1-4723-857d-dabe3ec3ad7e">
 </p>
 <br />
 <br />
@@ -11,7 +11,7 @@
 
 ## The Traditional 3 Tier Approach
 <p align="center">
-  <img width="500px" height="200px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/6bdceafa-802a-4244-9c98-19ad771f2380">
+  <img width="500px" height="200px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/7bbc23f5-851c-4a6f-9ddd-318ce8d7021a">
 </p>
 The Traditional 3 Tier approach to software architecture consists of the following 3 components:
 
@@ -27,7 +27,7 @@ As a result, development teams have been shifting to what's called "Clean Archit
 With the traditional 3 tier architecture your database gets placed at the center, forcing your application to become highly dependent on your database implementation. Clean Architecture instead focuses on your business entities and forces your application to depend on those entities in what's typically called the "Domain" layer.
 
 <p align="center">
-  <img width="300px" height="300px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/efcc52ee-6ada-409d-89cc-8e56c5e71200">
+  <img width="300px" height="300px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/fa9a187d-1553-47aa-8d1d-0d4ccae6f81b">
 </p>
 
 Clean Architecture creates separation of concerns by organizing our application into layers. By separating our business logic and domain entities from our database implementation and presentation code we create a much more maintainable and testable system. We can swap out databases without requiring a whole rewrite of our application.
