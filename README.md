@@ -47,6 +47,9 @@ In order to perform database operations or call 3rd party API's stored in our in
 
 Let's take a look at the ICloudinaryHelper interface in the common folder of our Application layer. Cloudinary is a 3rd part API we use for storing digital media (in our use case, recipe images) and thus it's implementation details lie in the Infrastructure layer. Rather than depending on these details directly, we can depend upon the interface and inject it into our RecipesLogic. This creates a "black box" for our application layer. It does not know about it's implementation details, it just knows what parameters to pass it from the "contract" defined in the interface. 
 ### Service Layer
+The service layer is an optional layer you can add to your application. It further decouples the frontend of your application from the backend by "wrapping" up your application logic into API endpoints and exposing those endpoints to your presentation layer. This is beneficial if at some point down the road we decide to add a mobile app UI layer for example, or switch technologies on the frontend.
+
+This layer is also where we register our dependencies and define their implementation.
 ### Persistence Layer
 * Abstracting away database, creating a black box, defining implementation on runtime through use of dependency injection
 ### Infrastructure Layer
