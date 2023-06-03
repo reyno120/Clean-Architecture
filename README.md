@@ -37,14 +37,15 @@ One of the biggest selling points to Clean Architecture is improved testability.
 ### What are the disadvantages to Clean Architecture?
 This approach requires more time and effort up front to implement, especially if there are developers on your team who don't have experience implementing Clean Architecture principles. Getting buy in from management and business owners can be difficult depending on your team's deadlines. Clean Architecture requires you to think about your application's growth in the long term.
 ## How to implement Clean Architecture
-* Functional Cohesion rather than categorical
 ### Domain Layer
-* DDD & Aggregates
-* Strongly Typed Id's
-
 The Domain layer sits at the center of our application. This is where me model our business entities using Domain-Driven Design. An entity is an object in your business domain that has an identity. An aggregate is a collection of entities held together by the aggregate root. In our recipe app example, the Recipes aggregate consists of a Recipe and a Direction class. The Recipe class is our aggregate root and has a reference to the Direction class. Anytime we want to access the Direction entity we need to do so through the aggregate root - our Recipe class.
 * Insert diagram of aggregate
 ### Application Layer
+The application layer stores all of our business logic. It references our domain layer but is unaware of any of our infrastructure or presentation details.
+
+In order to perform database operations or call 3rd party API's stored in our infrastructure layer we use the dependency inversion principle. Rather than depending on those layers directly, we can create an interface to depend on and define it's implementation at runtime using dependy injection.
+
+Let's take a look at the ICloudinaryHelper interface in the common folder of our Application layer. Cloudinary is a 3rd part API we use for storing digital media (in our use case, recipe images) and thus it's implementation details lie in the Infrastructure layer. Rather than depending on these details directly, we can depend upon the interface and inject it into our RecipesLogic. This creates a "black box" for our application layer. It does not know about it's implementation details, it just knows what parameters to pass it from the "contract" defined in the interface. 
 ### Service Layer
 ### Persistence Layer
 * Abstracting away database, creating a black box, defining implementation on runtime through use of dependency injection
