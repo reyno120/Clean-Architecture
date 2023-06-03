@@ -51,9 +51,15 @@ The service layer is an optional layer you can add to your application. It furth
 
 This layer is also where we register our dependencies and define their implementation.
 ### Persistence Layer
-* Abstracting away database, creating a black box, defining implementation on runtime through use of dependency injection
+The persistance layer contains all our data access code. Here we made use of the repository and unit of work pattern. In our domain layer we defined interfaces for our repositories. The implementation for these interfaces is defined in the service layer, injected into our application layer, and stored in our persistence layer.
+
+By abstracting away our database implementation like this we decouple our application from persistence frameworks, allowing us to swap frameworks or databases in the future without having to rewrite other parts of our application.
 ### Infrastructure Layer
+The infrastructure layer stores the details for any external dependencies. In our app's example we use Cloudinary to store digital assets.
 ### Presentation Layer
+The presentation layer is exactly what it sounds like. It's responsible for presenting data to the user and should not contain any business logic. Our frontend is built using a React web api with Bootstrap components.
+
+By structuring our application this way we can add multiple presentation layers. We can build a mobile UI layer or a desktop UI layer that all share the same backend logic.
 
 # Demo
 Video demo
