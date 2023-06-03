@@ -1,7 +1,7 @@
 # Understanding Clean Architecture
 * Place project image here
 
-## Traditional 3 Layer Approach
+## Traditional 3 Tier Approach
 <p align="center">
   <img width="500px" height="200px" src="https://github.com/reyno120/Clean-Architecture/assets/59970959/6bdceafa-802a-4244-9c98-19ad771f2380">
 </p>
