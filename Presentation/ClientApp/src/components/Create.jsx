@@ -77,23 +77,23 @@ export function Create() {
     }
 
     function validateForm() {
-        if (name == '') {
+        if (name === '') {
             setValid({ name: false, description: true });
             return false;
         }
 
-        if (description == '') {
+        if (description === '') {
             setValid({ name: true, description: false })
             return false;
         }
 
-        if (directions.length == 0) {
+        if (directions.length === 0) {
             setShowAlert(true);
             return false;
         }
 
         for (var i = 0; i < directions.length; i++) {
-            if (directions[i].direction == '') {
+            if (directions[i].direction === '') {
                 setShowAlert(true);
                 return false;
             } 
@@ -239,6 +239,7 @@ export function Create() {
                 <FormGroup>
                     {image != null ?
                         <img
+                            alt="Recipe"
                             src={URL.createObjectURL(image)}
                             style={{ width: '300px', height: '200px' }} />
                         : ''}
