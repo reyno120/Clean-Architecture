@@ -15,7 +15,7 @@ export default function RecipeCard(props) {
 
     var image = props.recipe.imagePublicId ?
         props.cld.image('recipes/' + props.recipe.imagePublicId + '.jpg') :
-        props.cld.image('sample');
+        props.cld.image('recipes/default.jpg');
 
     return (
         <Card
