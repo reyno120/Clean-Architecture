@@ -94,6 +94,6 @@ Under build-assets in the Presentation layer, open the Build_Database.sql file i
 The DefaultConnection string used to connect to the database can be found in the appsettings.json folder inside the Service Layer.
 
 ## Setting up Cloudinary
-Cloudinary is a 3rd party API used to store the digital assets used for this project. Navigate to https://cloudinary.com/ to create a free account. Upload each image inside the build-assets/Images folder. Cloudinary will add an extra extension to these filenames when you upload them so be sure to remove that extension. The name of the file is mapped to a uniqueidentifier stored with each Recipe in the Recipes table in the database.
+Cloudinary is a 3rd party API used to store the digital assets used for this project. Navigate to https://cloudinary.com/ to create a free account. Upload each image inside the build-assets/Images folder to a new folder in Cloudinary called "recipes". Cloudinary will add an extra extension to these filenames when you upload them so be sure to remove that extension. The name of the file is mapped to a uniqueidentifier stored with each Recipe in the Recipes table in the database.
 
 
