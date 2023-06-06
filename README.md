@@ -73,3 +73,27 @@ By structuring our application this way we can add multiple presentation layers.
 Video demo
 
 # Build Instructions
+## Prerequisites
+* Visual Studio 2022
+* SQL Server 2022
+* Cloudinary account (free version)
+
+## Installing / Getting started
+
+```shell
+git clone https://github.com/reyno120/Clean-Architecture.git
+cd ./CleanArchitecture/Presentation/ClientApp
+npm install
+```
+
+This will clone the repository and install the necessary dependencies on the front-end.
+
+## Setting up the Database
+Under build-assets in the Presentation layer, open the Build_Database.sql file in SSMS and run the script. This will build out the required database and tables along with inserting some sample data.
+
+The DefaultConnection string used to connect to the database can be found in the appsettings.json folder inside the Service Layer.
+
+## Setting up Cloudinary
+Cloudinary is a 3rd party API used to store the digital assets used for this project. Navigate to https://cloudinary.com/ to create a free account. Upload each image inside the build-assets/Images folder. Cloudinary will add an extra extension to these filenames when you upload them so be sure to remove that extension. The name of the file is mapped to a uniqueidentifier stored with each Recipe in the Recipes table in the database.
+
+
