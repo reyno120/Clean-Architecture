@@ -70,7 +70,7 @@ The presentation layer is exactly what it sounds like. It's responsible for pres
 By structuring our application this way we can add multiple presentation layers. We can build a mobile UI layer or a desktop UI layer that all share the same backend logic.
 
 # Demo
-Video demo
+[![Video Demo](https://img.youtube.com/vi/4jtuA3Yc6gs/0.jpg)](https://www.youtube.com/watch?v=4jtuA3Yc6gs)
 
 # Build Instructions
 ## Prerequisites
