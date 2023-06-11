@@ -88,6 +88,7 @@ export function Create() {
         }
 
         if (directions.length === 0) {
+            setValid({ name: true, description: true })
             setShowAlert(true);
             return false;
         }
