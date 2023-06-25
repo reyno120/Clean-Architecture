@@ -1,4 +1,6 @@
 ﻿
+using Domain.Exceptions;
+
 namespace Domain.Recipes
 {
     public class Direction
@@ -18,13 +20,13 @@ namespace Domain.Recipes
 
         public static Direction? Create(RecipeId recipeId, short stepNumber, string description)
         {
-            if(recipeId.Value.Equals(Guid.Empty))
-                return null;
+            if(recipeId == null || recipeId.Value.Equals(Guid.Empty))
+                throw new ArgumentNulOrEmptyException("RecipeId");
 
             if (string.IsNullOrEmpty(description))
                 return null;
 
-            if (stepNumber > _maxStepNumber || stepNumber == null)
+            if (stepNumber < 1 || stepNumber > _maxStepNumber || stepNumber == null)
                 return null;
 
             return new Direction(recipeId, stepNumber, description);
