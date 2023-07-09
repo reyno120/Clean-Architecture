@@ -55,13 +55,13 @@ In order to perform database operations or call 3rd party API's stored in our in
 
 Let's take a look at the ICloudinaryHelper interface in the common folder of our Application layer. Cloudinary is a 3rd party API we use for storing digital media (in our use case, recipe images) and thus it's implementation details lie in the Infrastructure layer. Rather than depending on these details directly, we can depend upon the interface and inject it into our RecipesLogic. This creates a "black box" for our application layer. It does not know about it's implementation details, it just knows what parameters to pass it from the "contract" defined in the interface. 
 ### Service Layer
-The service layer is an optional layer you can add to your application. It further decouples the frontend of your application from the backend by "wrapping" up your application logic into API endpoints and exposing those endpoints to your presentation layer. This is beneficial if at some point down the road we decide to add a mobile app UI layer for example, or switch technologies on the frontend.
-
-This layer is where we register our dependencies and define their implementation.
+The Service layer is used to provide the entry points into the business logic of our application by creating an exposing API endpoints to the presentation layer. The service layer is also where we create the DI container for our application and register all it's dependencies.
 ### Persistence Layer
 The persistance layer contains all our data access code. Here we made use of the repository and unit of work pattern. In our domain layer we defined interfaces for our repositories. The implementation for these interfaces is defined in the service layer, injected into our application layer, and stored in our persistence layer.
 
 By abstracting away our database implementation like this we decouple our application from persistence frameworks, allowing us to swap frameworks or databases in the future without having to rewrite other parts of our application.
+
+There is an important distinction to make between our implentation of the Unit of Work class and other implementations out there. Many implementations take in the appliction's DbContext in the constructor and new up the repositories, passing them the application's DbContext brought in through the constructor. This implementation however requires you to implement the IDisposable interface on the Unit of Work class and manually call the dispose method every time you make use of the class. If your applicaiton is making use of a DI container, like ours is, then this defeats the whole purpose behind dependency injection and inversion of control and can cause memory leaks if not handled properly. Rather, we should register the repositories in the DI container and inject them into the constructor of the Unit of Work class. That way we give control of the dependency to the DI container and let it do the cleanup work when needed.
 ### Infrastructure Layer
 The infrastructure layer stores the details for any external dependencies. In our app's example we use Cloudinary to store digital assets.
 ### Presentation Layer
