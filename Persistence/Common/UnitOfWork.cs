@@ -7,19 +7,15 @@ namespace Persistence.Common
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationContext _context;
-        public UnitOfWork(ApplicationContext context)
+        public IRecipeRepository Recipes { get; private set; }
+        public UnitOfWork(ApplicationContext context, IRecipeRepository recipes)
         {
             _context = context;
-            Recipes = new RecipeRepository(_context);
+            Recipes = recipes;
         }
-        public IRecipeRepository Recipes { get; private set; }
-        public int Complete()
+        public int Save()
         {
             return _context.SaveChanges();
-        }
-        public void Dispose() 
-        {
-            _context.Dispose();
         }
     }
 }

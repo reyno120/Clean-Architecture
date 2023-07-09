@@ -2,9 +2,9 @@
 
 namespace Domain.Common
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         IRecipeRepository Recipes { get; }
-        int Complete();
+        int Save();
     }
 }

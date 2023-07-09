@@ -7,13 +7,13 @@ namespace Persistence.Recipes
     public class RecipeRepository : Repository<Recipe>, IRecipeRepository
     {
         protected readonly ApplicationContext _context;
-        public RecipeRepository(ApplicationContext context) : base(context) 
+        public RecipeRepository(ApplicationContext context) : base(context)
         { 
             _context = context;
         }
         public IEnumerable<Recipe> GetAllRecipesWithDirections()
         {
-            return _context.Recipes.Include(s => s.Directions).ToList();
+            return _context.Recipes.Include(s => s.Directions).AsNoTracking().ToList();
         }
 
         public void CreateNewRecipe(Recipe recipe)
@@ -21,13 +21,11 @@ namespace Persistence.Recipes
             try
             {
                 _context.Recipes.Add(recipe);
-                _context.SaveChanges();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-
     }
 }

@@ -50,6 +50,7 @@ namespace Application.Recipes
             }
 
             _unitOfWork.Recipes.CreateNewRecipe(newRecipe);
+            _unitOfWork.Save();
         }
     }
 }

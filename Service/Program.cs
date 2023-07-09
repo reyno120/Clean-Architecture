@@ -22,13 +22,14 @@ options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
-builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
 builder.Services.AddTransient<IRecipesLogic, RecipesLogic>();
 builder.Services.AddTransient<ICloudinaryHelper, CloudinaryHelper>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
