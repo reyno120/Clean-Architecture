@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  presentation:
+    image: recipeapp.presentation
+    container_name: recipeapp.presentation
+    build:
+      context: .
+      dockerfile: Presentation/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+        - 8080:80
+    depends_on:
+        - service
+    
+  
+
+
+  service:
+    image: recipeapp.service
+    container_name: recipeapp.service
+    build:
+      context: .
+      dockerfile: Service/Dockerfile
+    ports:
+        - 8081:80
+

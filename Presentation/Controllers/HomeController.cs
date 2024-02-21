@@ -12,8 +12,12 @@ namespace Presentation.Controllers
         [HttpGet]
         public IEnumerable<RecipeDTO> Get()
         {
-            var recipes = RecipesHelper.GetAllRecipes(); 
-            return recipes;
+            return new List<RecipeDTO>()
+            {
+                new RecipeDTO() { Name = "Docker Test" }
+            };
+            //var recipes = RecipesHelper.GetAllRecipes(); 
+            //return recipes;
         }
     }
 }
