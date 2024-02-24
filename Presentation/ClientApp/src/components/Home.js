@@ -15,20 +15,17 @@ export default function Home() {
         }
     });
 
-    //const { isLoading, data, error } = useQuery("recipes", retrieveRecipes);
-    var data = [];
-    var recipes = [];
+    const { isLoading, data, error } = useQuery("recipes", retrieveRecipes);
 
-    recipes = data.map(recipe =>
-        //<Col key={recipe.id.value} style={{ marginBottom: '10%' }}>
-        //    <RecipeCard
-        //        key={recipe.id}
-        //        recipe={recipe}
-        //        cld={cld}
+    var recipes = data.map(recipe =>
+        <Col key={recipe.id.value} style={{ marginBottom: '10%' }}>
+            <RecipeCard
+                key={recipe.id}
+                recipe={recipe}
+                cld={cld}
 
-        //    />
-        //</Col>
-        <div>test</div>
+            />
+        </Col>
     )
 
     return (

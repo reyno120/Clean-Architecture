@@ -3,18 +3,31 @@ using Newtonsoft.Json;
 
 namespace Presentation.Helpers
 {
-    public static class RecipesHelper
+    public interface IRecipesHelper
     {
-        public static List<RecipeDTO> GetAllRecipes()
+        List<RecipeDTO> GetAllRecipes();
+        void CreateRecipe(Models.CreateRecipeModel model);
+    }
+
+    public class RecipesHelper : IRecipesHelper
+    {
+        private readonly IWebApiHelper _webApiHelper;
+
+        public RecipesHelper(IWebApiHelper webApiHelper) 
+        { 
+            _webApiHelper = webApiHelper;
+        }
+
+        public List<RecipeDTO> GetAllRecipes()
         {
             string route = "/GetAllRecipes";
-            var api = WebApiHelper.GetApi(route);
+            var api = _webApiHelper.GetApi(route);
             var recipesJson = JsonConvert.DeserializeObject(api).ToString();
             var recipes = JsonConvert.DeserializeObject<List<RecipeDTO>>(recipesJson);
             return recipes;
         }
 
-        public static void CreateRecipe(Models.CreateRecipeModel model)
+        public void CreateRecipe(Models.CreateRecipeModel model)
         {
             var newDirectionsModel = model.Directions.Select(s => new Directions
             {
@@ -33,7 +46,7 @@ namespace Presentation.Helpers
         };
 
             string route = "/CreateRecipe";
-            WebApiHelper.PostApi(route, newRecipeModel);
+            _webApiHelper.PostApi(route, newRecipeModel);
         }
     }
 }

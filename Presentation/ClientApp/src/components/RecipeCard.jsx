@@ -13,9 +13,9 @@ export default function RecipeCard(props) {
             {direction.stepNumber}. {direction.description}
         </CardText>) 
 
-    var image = props.recipe.imagePublicId ?
-        props.cld.image('recipes/' + props.recipe.imagePublicId + '.jpg') :
-        props.cld.image('recipes/default.jpg');
+    //var image = props.recipe.imagePublicId ?
+    //    props.cld.image('recipes/' + props.recipe.imagePublicId + '.jpg') :
+    //    props.cld.image('recipes/default.jpg');
 
     return (
         <Card
@@ -24,11 +24,11 @@ export default function RecipeCard(props) {
                 margin: 'auto'
             }}
         >
-            <AdvancedImage
-                cldImg={image}
-                plugins={[lazyload()]}
-                style={{width: '100%', height: '200px'}}
-            />
+            {/*<AdvancedImage*/}
+            {/*    cldImg={image}*/}
+            {/*    plugins={[lazyload()]}*/}
+            {/*    style={{width: '100%', height: '200px'}}*/}
+            {/*/>*/}
             <CardBody>
                 <CardTitle tag="h5">
                     {props.recipe.name}

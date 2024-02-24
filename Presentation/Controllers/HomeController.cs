@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Presentation.Helpers;
 using Application.Recipes;
-using Domain.Recipes;
 
 namespace Presentation.Controllers
 {
@@ -9,15 +8,18 @@ namespace Presentation.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
+        private readonly IRecipesHelper _recipesHelper;
+
+        public HomeController(IRecipesHelper recipesHelper)
+        {
+            _recipesHelper = recipesHelper;
+        }
+
         [HttpGet]
         public IEnumerable<RecipeDTO> Get()
         {
-            return new List<RecipeDTO>()
-            {
-                new RecipeDTO() { Name = "Docker Test" }
-            };
-            //var recipes = RecipesHelper.GetAllRecipes(); 
-            //return recipes;
+            var recipes = _recipesHelper.GetAllRecipes();
+            return recipes;
         }
     }
 }

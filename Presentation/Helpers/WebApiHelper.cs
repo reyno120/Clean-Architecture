@@ -4,21 +4,37 @@ using System.Text;
 
 namespace Presentation.Helpers
 {
-    public static class WebApiHelper
+    public interface IWebApiHelper
     {
-        private static string BuildUrl(string route)
-        {
-            string baseRoute = "https://localhost:7070";
-            return baseRoute + route;
-        }
+        string GetApi(string route);
+        string PostApi<T>(string route, T postObject);
+    }
 
-        private static void ConfigureApiClient(this HttpClient client)
+    public static class HttpClientExtensionMethods
+    {
+        public static void ConfigureApiClient(this HttpClient client)
         {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+    }
 
-        public static string GetApi(string route)
+
+    public class WebApiHelper : IWebApiHelper
+    {
+        private readonly IConfiguration _configuration;
+        public WebApiHelper(IConfiguration configuration) 
+        {
+            _configuration = configuration;
+        }
+
+
+        private string BuildUrl(string route)
+        {
+            return _configuration.GetConnectionString("Server") + route;
+        }
+
+        public string GetApi(string route)
         {
             route = BuildUrl(route);
 
@@ -34,7 +50,7 @@ namespace Presentation.Helpers
             }
         }
 
-        public static string PostApi<T>(string route, T postObject)
+        public string PostApi<T>(string route, T postObject)
         {
             route = BuildUrl(route);
 

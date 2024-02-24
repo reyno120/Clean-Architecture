@@ -1,9 +1,12 @@
+using Presentation.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IWebApiHelper, WebApiHelper>();
+builder.Services.AddTransient<IRecipesHelper, RecipesHelper>();
 
 var app = builder.Build();
 
@@ -14,7 +17,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// If using Https, configure using https://learn.microsoft.com/en-us/aspnet/core/security/docker-compose-https?view=aspnetcore-8.0
+//app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 app.UseRouting();
 

@@ -1,5 +1,6 @@
 version: '3.4'
 
+
 services:
   presentation:
     image: recipeapp.presentation
@@ -8,8 +9,7 @@ services:
       context: .
       dockerfile: Presentation/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTP_PORTS=8080 
     ports:
         - 8080:80
     depends_on:
@@ -24,6 +24,22 @@ services:
     build:
       context: .
       dockerfile: Service/Dockerfile
+    environment:
+      - ASPNETCORE_HTTP_PORTS=8081
     ports:
         - 8081:80
+
+
+
+
+
+  database:
+    build: ./mssql_server
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "sqlserver!Password"
+    ports:
+      - 1450:1433   # exposed so we can connect via ssms
+
+
 
